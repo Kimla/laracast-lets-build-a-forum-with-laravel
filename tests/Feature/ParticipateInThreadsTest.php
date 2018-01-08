@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class ParticipateInForum extends TestCase
+class ParticipateInThreadsTest extends TestCase
 {
     use DatabaseMigrations;
 
@@ -20,11 +20,11 @@ class ParticipateInForum extends TestCase
 
     /** @test */
     function an_authenticated_user_may_participate_in_forum_threads() {
-        $this->be(factory('App\User')->create());
+        $this->signIn();
 
-        $thread = factory('App\Thread')->create();
+        $thread = create('App\Thread');
 
-        $reply = factory('App\Reply')->make();
+        $reply = make('App\Reply');
         $this->post($thread->path().'/replies', $reply->toArray());
 
         $this->get($thread->path())->assertSee($reply->body);
