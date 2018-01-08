@@ -9,7 +9,7 @@ class Thread extends Model
     protected $guarded = [];
 
     public function path() {
-        return url('/') . '/threads/' . $this->id;
+        return url('/') . '/threads/' . $this->channel->slug . '/' . $this->id;
     }
 
     public function replies() {
@@ -22,5 +22,9 @@ class Thread extends Model
 
     public function addReply($reply) {
         $this->replies()->create($reply);
+    }
+
+    public function channel() {
+        return $this->belongsTo(Channel::class);
     }
 }
