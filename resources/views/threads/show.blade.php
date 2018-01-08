@@ -23,5 +23,21 @@
             @endforeach
         </div>
     </div>
+
+    @auth
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <form class="" action="{{ $thread->path() . '/replies' }}" method="POST">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        <textarea class="form-control" name="body" name="body" placeholder="Comment here..." rows="5"></textarea>
+                    </div>
+                    <button class="btn btn-default" type="submit">Post</button>
+                </form>
+            </div>
+        </div>
+    @else
+        <p class="text-center">Please <a href="{{ route('login') }}">sign in</a> to participate in this discussion.</p>
+    @endauth
 </div>
 @endsection
