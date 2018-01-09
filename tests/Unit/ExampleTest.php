@@ -3,17 +3,19 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class ExampleTest extends TestCase
+class ChannelTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testBasicTest()
-    {
-        $this->assertTrue(true);
+    use DatabaseMigrations;
+
+    /** @test */
+    function a_channel_consists_of_threads() {
+        $channel = create('App\Channel');
+        $thread = create('App\Thread', ['channel_id' => $channel->id]);
+
+        $this->assertTrue($channel->threads->contains($thread));
     }
 }
