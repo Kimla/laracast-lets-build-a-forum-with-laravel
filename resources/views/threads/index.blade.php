@@ -11,12 +11,12 @@
                     @foreach ($threads as $thread)
                         <article>
                             <div class="level">
-                                <h4 class="flex">
+                                <h4>
                                     <a href="{{ $thread->path() }}">
                                         {{ $thread->title }}
                                     </a>
                                 </h4>
-                                
+
                                 <a href="{{ $thread->path() }}">
                                     <strong>{{ $thread->replies_count }} {{ str_plural('reply', $thread->replies_count) }}</strong>
                                 </a>
