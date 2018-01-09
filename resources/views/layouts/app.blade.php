@@ -12,8 +12,21 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <style media="screen">
+        body {
+            padding-bottom: 100px;
+        }
+        .level {
+            display: flex;
+            align-items: center;
+        }
+        .flex {
+            flex: 1;
+        }
+    </style>
 </head>
-<body style="padding-bottom:80px">
+<body>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
@@ -43,11 +56,16 @@
                                 <li>
                                     <a href="{{ url('/') . '/threads' }}">All Threads</a>
                                 </li>
+
                                 @auth
                                     <li>
                                         <a href="{{ url('/') . '/threads?by=' . auth()->user()->name }}">My Threads</a>
                                     </li>
                                 @endauth
+
+                                <li>
+                                    <a href="{{ url('/') . '/threads?popular=1' }}">Popular Threads</a>
+                                </li>
                             </ul>
                         </li>
 
